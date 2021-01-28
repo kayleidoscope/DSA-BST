@@ -12,7 +12,7 @@ function numbersTree() {
     BST.insert(5, 5)
     BST.insert(7, 7)
 
-    console.log(BST.right.right)
+    return BST
 }
 
 // numbersTree()
@@ -36,7 +36,7 @@ function lettersTree() {
     BST.insert("O", "O")
     BST.insert("N", "N")
 
-    console.log(BST.right.right.left.right)
+    return BST
 }
 
 // lettersTree()
@@ -44,3 +44,27 @@ function lettersTree() {
 //I misplaced the second E and S (and the nodes that would become children of the
 //second E and S) because I misunderstood how the tree would deal with repeating
 //nodes. I also misplaced O because I seem to have totally forgotten to include it.
+
+/*
+
+What does this program do?
+
+function tree(t){
+    if(!t){
+        return 0;
+    }
+    return tree(t.left) + t.value + tree(t.right)
+}
+
+It adds up all of the values in the tree until it has reached the ends.
+
+*/
+
+function tree(t){
+    if(!t){
+        return 0;
+    }
+    return tree(t.left) + t.value + tree(t.right)
+}
+
+console.log(tree(numbersTree()))
