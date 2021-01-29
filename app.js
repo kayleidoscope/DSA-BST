@@ -145,4 +145,4 @@ function largest(tree, rank) {
     }
 }
 
-console.log(largest(numbersTree(), 3))
+// console.log(largest(numbersTree(), 3))
