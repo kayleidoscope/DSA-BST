@@ -1,4 +1,5 @@
 const {BinarySearchTree} = require('./BST')
+const {BinaryTree} = require('./BT')
 
 function numbersTree() {
     const BST = new BinarySearchTree()
@@ -58,6 +59,8 @@ function tree(t){
 
 It adds up all of the values in the tree until it has reached the ends.
 
+It's O(n)
+
 */
 
 function tree(t){
@@ -67,4 +70,79 @@ function tree(t){
     return tree(t.left) + t.value + tree(t.right)
 }
 
-console.log(tree(numbersTree()))
+// console.log(tree(numbersTree()))
+
+
+function tinyTree() {
+    const BST = new BinarySearchTree()
+
+    BST.insert(3, 3)
+
+    return BST
+}
+
+function simpleTree() {
+    const BST = new BinarySearchTree()
+
+    BST.insert(2, 2)
+    BST.insert(4, 4)
+    BST.insert(3, 3)
+    BST.insert(5, 5)
+
+
+    return BST
+}
+
+function treeHeight(tree, height = 0) {
+    if (!tree) return height;
+    const leftHeight = treeHeight(tree.left, height + 1);
+    const rightHeight = treeHeight(tree.right, height + 1);
+    return leftHeight > rightHeight ? leftHeight : rightHeight;
+  }
+
+// console.log(treeHeight(simpleTree()))
+
+function MessyNumbersTree() {
+    const BST = new BinaryTree()
+
+    BST.insert(3, 3)
+    BST.insert(1, 1)
+    BST.insert(4, 4)
+    BST.insert(6, 6)
+    BST.insert(9, 9)
+    BST.insert(2, 2)
+    BST.insert(5, 5)
+    BST.insert(7, 7)
+
+    return BST
+}
+
+// MessyNumbersTree()
+
+
+function isItABST(tree, answer = true) {
+    if (!tree) return answer
+
+    const left = isItABST(tree.left, answer)
+    const right = isItABST(tree.right, answer)
+}
+
+// console.log(isItABST(numbersTree()))
+
+function largest(tree, rank) {
+    for (let i = 0; i < rank ; i++) {
+        let node = tree.right
+        while (tree.left || tree.right) {
+            if (!node.right) {
+                break
+            }
+            node = node.right
+        }
+        if (i === rank - 1) {
+            return node.value
+        }
+        tree.remove(node.value)
+    }
+}
+
+console.log(largest(numbersTree(), 3))
